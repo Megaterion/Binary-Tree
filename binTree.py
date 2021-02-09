@@ -1,3 +1,8 @@
+#==========================================
+# Title:  Binary Tree
+# Author: Megaterion
+#==========================================
+
 class TreeNode:
     def __init__(self, value):
         self.left = None
@@ -22,6 +27,14 @@ class Tree:
                     node.right = TreeNode(value)
                 else:
                     self.addNode(node.right, value)
+                    
+    def findNode(self, node, value):
+        if(node!=None):
+            self.findNode(node.left, value)
+            self.findNode(node.right, value)
+            if node.data == value:
+                print(value," ist vorhanden")
+            
 
     def printInorder(self, node):
         if(node!=None):
@@ -42,10 +55,18 @@ class Tree:
 
 def test():
     T = Tree()
+
+    print("200, 300, 100 und 30 werden hinzugefügt.")
     T.addNode(T.root, 200)
     T.addNode(T.root, 300)
     T.addNode(T.root, 100)
     T.addNode(T.root, 30)
+
+    print("Suche nach 30, 12 und 300")
+    T.findNode(T.root, 30)
+    T.findNode(T.root, 12)
+    T.findNode(T.root, 300)
+    
     print("Inorder")
     T.printInorder(T.root)
     print("Preorder")
