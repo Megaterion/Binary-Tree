@@ -1,72 +1,38 @@
-class Node:
-    def __init__(self, val):
-        self.l = None
-        self.r = None
-        self.v = val
+class TreeNode:
+    def __init__(self, value):
+        self.left = None
+        self.right = None
+        self.data = value
 
 class Tree:
     def __init__(self):
         self.root = None
 
-    def getRoot(self):
-        return self.root
-
-    def add(self, val):
-        if self.root is None:
-            self.root = Node(val)
+    def addNode(self, node, value):
+        if(node==None):
+            self.root = TreeNode(value)
         else:
-            self._add(val, self.root)
-
-    def _add(self, val, node):
-        if val < node.v:
-            if node.l is not None:
-                self._add(val, node.l)
+            if(value<node.data):
+                if(node.left==None):
+                    node.left = TreeNode(value)
+                else:
+                    self.addNode(node.left, value)
             else:
-                node.l = Node(val)
-        else:
-            if node.r is not None:
-                self._add(val, node.r)
-            else:
-                node.r = Node(val)
+                if(node.right==None):
+                    node.right = TreeNode(value)
+                else:
+                    self.addNode(node.right, value)
 
-    def find(self, val):
-        if self.root is not None:
-            return self._find(val, self.root)
-        else:
-            return None
+    def printInorder(self, node):
+        if(node!=None):
+            self.printInorder(node.left)
+            print(node.data)
+            self.printInorder(node.right)
 
-    def _find(self, val, node):
-        if val == node.v:
-            return node
-        elif (val < node.v and node.l is not None):
-            self._find(val, node.l)
-        elif (val > node.v and node.r is not None):
-            self._find(val, node.r)
-
-    def deleteTree(self):
-        self.root = None
-
-    def printTree(self):
-        if self.root is not None:
-            self._printTree(self.root)
-
-    def _printTree(self, node):
-        if node is not None:
-            self._printTree(node.l)
-            print(str(node.v) + ' ')
-            self._printTree(node.r)
-
-#     3
-# 0     4
-#   2      8
-tree = Tree()
-tree.add(3)
-tree.add(4)
-tree.add(0)
-tree.add(8)
-tree.add(2)
-tree.printTree()
-print(tree.find(3).v)
-print(tree.find(10))
-tree.deleteTree()
-tree.printTree()
+def test():
+    T = Tree()
+    T.addNode(T.root, 200)
+    T.addNode(T.root, 300)
+    T.addNode(T.root, 100)
+    T.addNode(T.root, 30)
+    T.printInorder(T.root)
