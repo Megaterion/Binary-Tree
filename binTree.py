@@ -29,6 +29,12 @@ class Tree:
             print(node.data)
             self.printInorder(node.right)
 
+    def printPreorder(self, node):
+        if (node!=None):
+            print(node.data)
+            self.printPreorder(node.left)
+            self.printPreorder(node.right)
+
 def test():
     T = Tree()
     T.addNode(T.root, 200)
@@ -36,3 +42,5 @@ def test():
     T.addNode(T.root, 100)
     T.addNode(T.root, 30)
     T.printInorder(T.root)
+    T.printPreorder(T.root)
+
