@@ -34,6 +34,11 @@ class Tree:
             print(node.data)
             self.printPreorder(node.left)
             self.printPreorder(node.right)
+    def printPostorder(self, node):
+        if(node!=None):
+            self.printPostorder(node.left)
+            self.printPostorder(node.right)
+            print(node.data)
 
 def test():
     T = Tree()
@@ -41,6 +46,9 @@ def test():
     T.addNode(T.root, 300)
     T.addNode(T.root, 100)
     T.addNode(T.root, 30)
+    print("Inorder")
     T.printInorder(T.root)
+    print("Preorder")
     T.printPreorder(T.root)
-
+    print("Postorder")
+    T.printPostorder(T.root)
