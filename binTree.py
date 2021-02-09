@@ -14,22 +14,22 @@ class Tree:
         self.root = None
 
     def addNode(self, node, value):
-        if(node==None):
+        if node == None:
             self.root = TreeNode(value)
         else:
-            if(value<node.data):
-                if(node.left==None):
+            if value < node.data:
+                if node.left == None:
                     node.left = TreeNode(value)
                 else:
                     self.addNode(node.left, value)
             else:
-                if(node.right==None):
+                if node.right == None:
                     node.right = TreeNode(value)
                 else:
                     self.addNode(node.right, value)
                     
     def findNode(self, node, value):
-        if(node!=None):
+        if node != None:
             self.findNode(node.left, value)
             self.findNode(node.right, value)
             if node.data == value:
@@ -37,18 +37,19 @@ class Tree:
             
 
     def printInorder(self, node):
-        if(node!=None):
+        if node != None:
             self.printInorder(node.left)
             print(node.data)
             self.printInorder(node.right)
 
     def printPreorder(self, node):
-        if (node!=None):
+        if node != None:
             print(node.data)
             self.printPreorder(node.left)
             self.printPreorder(node.right)
+            
     def printPostorder(self, node):
-        if(node!=None):
+        if node != None:
             self.printPostorder(node.left)
             self.printPostorder(node.right)
             print(node.data)
